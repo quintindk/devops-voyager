@@ -1,1 +1,3 @@
 __pycache__/
+docker/app.py
+docker/requirements.txt
