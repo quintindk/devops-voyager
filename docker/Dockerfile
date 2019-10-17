@@ -1,15 +1,12 @@
-FROM python:3
+FROM python:3.6
 
 WORKDIR /usr/src/app
 
-COPY requirements.txt ./
+COPY . .
 RUN pip install -r requirements.txt
-
-ENV FLASK_ENV=development
-ENV FLASK_APP=app.py
 
 EXPOSE 5000
 
-COPY . .
+ENTRYPOINT [ "python" ]
 
-CMD [ "python", "-m", "flask", "run" ]
+CMD [ "app.py" ]
