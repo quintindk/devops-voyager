@@ -7,4 +7,4 @@ cp ../app.py .
 cp ../requirements.txt .
 
 echo "build container"
-docker build -t devops-voyager:VERSION .
+docker build -t devops-voyager:$VERSION .

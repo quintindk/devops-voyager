@@ -30,3 +30,15 @@ I've create a small shell script that will copy the latest app.py file and issue
 ```
 
 The above command will build the docker image devops-voyager with the version specified.
+
+## docker push
+
+I've pushed and will continue to push the file to my own personal repository on [Docker Hub](https://hub.docker.com/).
+
+```shell
+docker tag devops-voyager:1.0.0 quintindk/devops-voyager:1.0.0
+docker login
+docker push quintindk/devops-voyager:1.0.0
+```
+
+And it's there, go have a look [https://hub.docker.com/r/quintindk/devops-voyager](https://hub.docker.com/r/quintindk/devops-voyager) :grinning:
