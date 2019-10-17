@@ -16,9 +16,13 @@ I was looking at [Flask](http://flask.palletsprojects.com/en/1.1.x/) and decided
 
 The reverse proxy pattern is a common architectural pattern in Kubernetes and is specifically implemented in [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) controllers. There is an entire list of possible controllers including cloud specific controllers (which we'll get to later) but for now we'll use [NGINX](https://www.nginx.com/) for an on prem or dev cluster.
 
+## monitoring
+
+This is where I can learn a ton, not my strongest point, well not really true; I created a PerformanceCounter implementation in .NET core that feeds into InfluxDb. I'm great at InfluxDb and Grafana but the requirement is to bring in Promethius and Grafana. We'll figure it out.
+
 ## testing
 
-I will provide the Kubernetes YAML and shell scripts to provision the solution to a Minikube environment for testing. Please ensure that you have a working version of Minikube, at least version 1.16. You can find setup instructions [here](https://kubernetes.io/docs/setup/learning-environment/minikube/).
+I will provide the Kubernetes YAML and shell scripts to provision the solution to a Minikube environment for testing. Please ensure that you have a working version of Minikube, at least version 1.16. You can find setup instructions [here](https://kubernetes.io/docs/tasks/tools/install-minikube/).
 
 ## cloud
 
