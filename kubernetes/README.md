@@ -2,6 +2,17 @@
 
 This is where the orchestration happens...
 
+## minikube
+
+To start you'll require minikube. You can find setup instructions [here](https://kubernetes.io/docs/tasks/tools/install-minikube/). Once installed you can start minikube with a simple `minikube start` command. Minikube start will also set your kubectl context so that can be confusing at times.
+
+Use this command to ensure that the kube-prometheus stack will work.
+
+```shell
+minikube delete && minikube start --kubernetes-version=v1.16.2 --cpus 4 --memory=4096 --bootstrapper=kubeadm --extra-config=kubelet.authentication-token-webhook=true --extra-config=kubelet.authorization-mode=Webhook --extra-config=scheduler.address=0.0.0.0 --extra-config=controller-manager.address=0.0.0.0
+minikube addons disable metrics-server
+```
+
 ## devops-voyager
 
 The devops-voyager component of our architecture contains the deployment of the pod that contains our application and the service to access that pod.
@@ -57,26 +68,13 @@ spec:
   ports:
   - name: flask
     protocol: TCP
-    targetPort: 5000
     port: 5000
 ---
 ```
 
-## nginx ingress
+### deploy
 
-This is the ingress/loadbalancer/reverse proxy. Our initial requirements required "Only one pod needs to be accessible externally. This pod needs to act as a proxy that will perform a call to the second pod to retrieve information." As discussed in the main README.md this is a common pattern in Kubernetes architectures.
-
-For this we'll be using Helm to deploy the controller. Helm is a package manager for Kubernetes and provides standardized deployments for off-the-shelf packages and patterns. You can read more about it [here](https://helm.sh/docs/).
-
-The `nginx.yaml` file contains the values for the Helm chart for NGINX.
-
-## minikube
-
-To start you'll require minikube. You can find setup instructions [here](https://kubernetes.io/docs/tasks/tools/install-minikube/). Once installed you can start minikube with a simple `minikube start` command. Minikube start will also set your kubectl context so that can be confusing at times.
-
-### pods and service
-
-To test this you can deploy the pod and service with a single command using kubectl.
+To test this you can deploy the pod and service using kubectl.
 
 ```shell
 kubectl create namespace webservices
@@ -90,23 +88,81 @@ deployment.apps/devops-voyager created
 service/devops-voyager created
 ```
 
-If you'd like to query the status:
+## nginx ingress
+
+This is the ingress/loadbalancer/reverse proxy. Our initial requirements required "Only one pod needs to be accessible externally. This pod needs to act as a proxy that will perform a call to the second pod to retrieve information." As discussed in the main README.md this is a common pattern in Kubernetes architectures.
+
+The `nginx.yaml` file contains the the NGINX deployment, nginx.conf config map (which contains the reverse proxy rules) and NodePort service.
+
+### deployemnt
+
+Again, we'll use kubectl to deploy.
 
 ```shell
-kubectl -n webservices get pods
-kubectl -n webservices get svc
+kubectl create namespace ingress
+kubectl apply -f nginx.yaml
 ```
 
-Once the container is created you can see that the service and the pod are hooked up:
+### testing
+
+To test the deployment of the NGINX reverse proxy and the devops-voyager app you can use Postman or curl to GET from the web service.
 
 ```shell
-kubectl -n webservices describe svc devops-voyager
+kubectl -n ingress describe svc nginx
 ```
 
-### nginx
+This should output something like:
 
->Actually, after you've been through all that; you could just use the dashboard:
+```text
+Name:                     nginx
+Namespace:                ingress
+Labels:                   <none>
+Annotations:              kubectl.kubernetes.io/last-applied-configuration:
+                            {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"nginx","namespace":"ingress"},"spec":{"ports":[{"port":80,"target...
+Selector:                 app=nginx
+Type:                     NodePort
+IP:                       10.103.176.196
+Port:                     <unset>  80/TCP
+TargetPort:               80/TCP
+NodePort:                 <unset>  31264/TCP
+Endpoints:                172.17.0.5:80
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:                   <none>
+```
+
+You can then curl to the minkube node and the NodePort value above.
 
 ```shell
-minikube dashboard
+curl -G http://192.168.99.100:31264
 ```
+
+You should see:
+
+```text
+Server Works!
+```
+
+## prometheus and grafana
+
+To install prometheus I'm going to use the [kube-prometheus](https://github.com/coreos/kube-prometheus) stack which includes the metric servers, prometheus and grafana. It's a bit of a cheat I guess but if the tools exist, why re-invent them :grinning:, that is the beauty of open source.
+
+```shell
+kubectl create -f manifests/
+sleep 10
+kubectl create -f manifests/
+until kubectl get customresourcedefinitions servicemonitors.monitoring.coreos.com ; do date; sleep 1; echo ""; done
+until kubectl get servicemonitors --all-namespaces ; do date; sleep 1; echo ""; done
+sleep 120
+kubectl apply -f manifests/
+sleep 10
+kubectl apply -f manifests/
+```
+
+To access the Grafana dashboard:
+
+```shell
+kubectl --namespace monitoring port-forward svc/grafana 3000
+```
+
+The open the browser with address http://127.0.0.1:3000

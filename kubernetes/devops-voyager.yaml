@@ -22,10 +22,10 @@ spec:
         resources:
           requests:
             memory: "128Mi"
-            cpu: 1
+            cpu: 0.25
           limits:
             memory: "256Mi"
-            cpu: 2
+            cpu: 0.25
         ports:
         - name: flask
           containerPort: 5000
@@ -42,6 +42,5 @@ spec:
   ports:
   - name: flask
     protocol: TCP
-    targetPort: 5000
     port: 5000
 ---
