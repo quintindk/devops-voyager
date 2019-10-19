@@ -1,0 +1,46 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-voyager
+  namespace: webservices
+  labels:
+    app: devops-voyager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devops-voyager
+  template:
+    metadata:
+      labels:
+        app: devops-voyager
+    spec:
+      containers:
+      - name: devops-voyager
+        image: quintindk/devops-voyager:1.0.0
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: 0.25
+          limits:
+            memory: "256Mi"
+            cpu: 0.25
+        ports:
+        - name: flask
+          containerPort: 5000
+      restartPolicy: Always
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: devops-voyager
+  namespace: webservices
+spec:
+  selector:
+    app: devops-voyager
+  ports:
+  - name: flask
+    protocol: TCP
+    port: 5000
+---
