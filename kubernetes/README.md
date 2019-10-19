@@ -42,7 +42,7 @@ spec:
     spec:
       containers:
       - name: devops-voyager
-        image: quintindk/devops-voyager:1.0.0
+        image: quintindk/devops-voyager:1.0.1
         ports:
         - name: flask
           containerPort: 5000

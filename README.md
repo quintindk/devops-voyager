@@ -12,6 +12,14 @@ I've decided to provide a Python RESTful web service to retrieve the list of lan
 
 I was looking at [Flask](http://flask.palletsprojects.com/en/1.1.x/) and decided the programming style, specifically using attribution for routing etc., worked for me. It would also be easy to install in a docker container to get it running.
 
+The app is very basic; it has two methods:
+
+* `greet` will return a random greeting.
+* `greet/<language>` will return the greeting for that language
+* `languages` will return the list of languages
+
+My favourite greeting is "Friends of space, how are you all? Have you eaten yet? Come visit us if you have time.". I'm not sure if this is an invite to come and eat us? You can retrieve this using Amoy as a parameter.
+
 ## reverse-proxy
 
 The reverse proxy pattern is a common architectural pattern in Kubernetes and is specifically implemented in [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) controllers. There is an entire list of possible controllers including cloud specific controllers (which we'll get to later) but for now we'll use [NGINX](https://www.nginx.com/) for an on prem or dev cluster.
@@ -27,10 +35,6 @@ I will provide the Kubernetes YAML and shell scripts to provision the solution t
 ## cloud
 
 There will also be a set of shell scripts that will deploy this to a Azure Kubernetes Service or [AKS](https://docs.microsoft.com/en-us/azure/aks/) cluster with a Azure Load Balancer as the ingress controller if time permits. This will demonstrate the power of the az cli.
-
-## azure-devops
-
-Finally, I'd like to see if I can use a personal Azure DevOps account with a CI/CD pipeline from GitHub to deploy the solution automatically to the cloud on commit to the master branch.
 
 ## conclusion
 
