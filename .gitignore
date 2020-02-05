@@ -2,3 +2,10 @@ __pycache__/
 docker/app.py
 docker/requirements.txt
 docker/data.csv
+
+*bin/*
+*obj/*
+src/aspnet-legacy/aspnet-legacy.csproj.user
+src/aspnet-legacy/.vs/*
+src/aspnet-legacy/bin/*
+src/aspnet-legacy/obj/*
