@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\Quintin\source\repos\devops-voyager\src\aspnet-legacy\bin\Release\Publish</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/aspnet-legacy.dll">
+      <publishTime>02/06/2020 10:18:25</publishTime>
+    </File>
+    <File Include="bin/aspnet-legacy.pdb">
+      <publishTime>02/06/2020 10:18:25</publishTime>
+    </File>
+    <File Include="data.csv">
+      <publishTime>02/05/2020 09:22:46</publishTime>
+    </File>
+    <File Include="GreetingService.asmx">
+      <publishTime>02/05/2020 10:55:22</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>02/06/2020 10:18:26</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
