@@ -4,6 +4,22 @@ The is the future of deployment...
 
 ## docker file
 
+### legacy windows service dockerfile
+
+```dockerfile
+FROM mcr.microsoft.com/windows/servercore/iis:windowsservercore-1909
+
+RUN powershell -NoProfile -Command Remove-Item -Recurse C:\inetpub\wwwroot\*
+
+EXPOSE 80
+
+WORKDIR /inetpub/wwwroot
+
+COPY app/ .
+```
+
+### new python service dockerfile
+
 ```dockerfile
 FROM python:3.6
 
@@ -19,19 +35,37 @@ ENTRYPOINT [ "python" ]
 CMD [ "app.py" ]
 ```
 
-The above docker file will copy the files from the docker folder, use the official Python 3.6 base image [https://hub.docker.com/_/python](https://hub.docker.com/_/python).
-
 ## docker build
 
-I've create a small shell script that will copy the latest app.py file and issue the build command to docker, This is mainly for local build and debug scenarios.
+### legacy windows service build
+
+I've create a small powershell script that will copy the latest published ASP.NET web service files and issue the build command to docker. This is mainly for local build and debug scenarios.
+
+```powershell
+./build.ps1 1.0.0
+```
+
+The above command will build the docker image legacy-voyager with the version specified.
+
+### new python service service build
+
+I've create a small shell script that will copy the latest python app files and issue the build command to docker. This is mainly for local build and debug scenarios.
 
 ```shell
-./build.sh 1.0.1
+./build.sh 1.0.0
 ```
 
 The above command will build the docker image devops-voyager with the version specified.
 
 ## docker test
+
+### legacy windows service build
+
+```powershell
+docker run -d --rm -p 8080:80 --name legacy-voyager legacy-voyager:1.0.0
+```
+
+### new python service service build
 
 ```shell
 docker run -d --rm -p 127.0.0.1:5000:5000 --name voyager devops-voyager:1.0.1
