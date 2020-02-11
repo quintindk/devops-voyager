@@ -12,3 +12,17 @@ spec:
       targetPort: 5000
   selector:
     app: devops-voyager
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: legacy-voyager-lb
+  namespace: webservices
+spec:
+  type: LoadBalancer
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 80
+  selector:
+    app: legacy-voyager

@@ -1,0 +1,48 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: legacy-voyager
+  namespace: webservices
+  labels:
+    app: legacy-voyager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: legacy-voyager
+  template:
+    metadata:
+      labels:
+        app: legacy-voyager
+    spec:
+      containers:
+      - name: legacy-voyager
+        image: quintindk/legacy-voyager:1.0.0
+        resources:
+          requests:
+            memory: "2GB"
+            cpu: 1
+          limits:
+            memory: "4GB"
+            cpu: 2
+        ports:
+        - name: http
+          containerPort: 80
+      restartPolicy: Always
+      nodeSelector:
+        kubernetes.io/os: windows
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: legacy-voyager
+  namespace: webservices
+spec:
+  selector:
+    app: legacy-voyager
+  ports:
+  - name: flask
+    protocol: TCP
+    port: 80
+---
