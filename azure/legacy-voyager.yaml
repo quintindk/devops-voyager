@@ -18,13 +18,13 @@ spec:
     spec:
       containers:
       - name: legacy-voyager
-        image: quintindk/legacy-voyager:1.0.0
+        image: quintindk/legacy-voyager:2.0.0
         resources:
           requests:
-            memory: "2GB"
+            memory: "500Mi"
             cpu: 1
           limits:
-            memory: "4GB"
+            memory: "1Gi"
             cpu: 2
         ports:
         - name: http

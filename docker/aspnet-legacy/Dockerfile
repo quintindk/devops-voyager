@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/windows/servercore/iis:windowsservercore-1909
+FROM mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2019
 SHELL ["powershell"]
 
 RUN Install-WindowsFeature NET-Framework-45-ASPNET ; \

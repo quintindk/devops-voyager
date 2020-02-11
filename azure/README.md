@@ -83,6 +83,18 @@ The `devops-voyager.yaml` file used in minikube can be deployed as is on the aks
 ```shell
 kubectl create namespace webservices
 kubectl apply -f devops-voyager.yaml
+```
+
+```shell
+kubectl -n webservices get pods -o wide
+```
+
+```shell
+NAME                              READY   STATUS              RESTARTS   AGE   IP       NODE                            NOMINATED NODE   READINESS GATES
+devops-voyager-6859bb4645-tnjfq   0/1     ContainerCreating   0          21s   <none>   aks-linux-37020821-vmss000000   <none>           <none>
+```
+
+```shell
 kubectl apply -f legacy-voyager.yaml
 ```
 
