@@ -36,7 +36,7 @@ az aks create --resource-group=rg-devopsdemo-prod-001 \
   --network-plugin=azure
 ```
 
-You should then install the Kubectl command and get the credentials.s
+You should then install the Kubectl command and get the credentials.
 
 ```shell
 az aks install-cli

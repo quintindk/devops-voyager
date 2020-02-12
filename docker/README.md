@@ -62,7 +62,7 @@ The above command will build the docker image devops-voyager with the version sp
 ### legacy windows service build
 
 ```powershell
-docker run -d --rm -p 8080:80 --name legacy-voyager legacy-voyager:1.0.0
+docker run -d --rm -p 8080:80 --name legacy-voyager legacy-voyager:2.0.0
 ```
 
 ### new python service service build
