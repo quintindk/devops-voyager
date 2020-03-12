@@ -34,8 +34,12 @@ I will provide the Kubernetes YAML and shell scripts to provision the solution t
 
 ## cloud
 
-There will also be a set of shell scripts that will deploy this to a Azure Kubernetes Service or [AKS](https://docs.microsoft.com/en-us/azure/aks/) cluster with a Azure Load Balancer as the ingress controller if time permits. This will demonstrate the power of the az cli.
+<s>There will also be a set of shell scripts that will deploy this to a Azure Kubernetes Service or [AKS](https://docs.microsoft.com/en-us/azure/aks/) cluster with a Azure Load Balancer as the ingress controller if time permits. This will demonstrate the power of the az cli.</s>
+
+I've added a terraform implementation that will deploy an API management instance too.
 
 ## conclusion
 
 I hope that this project demonstrates the power of Kubernetes, the CI/CD capabilities and the flexibility of the tooling I've used in this demonstration.
+
+## references
