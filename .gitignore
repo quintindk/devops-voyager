@@ -10,3 +10,4 @@ src/aspnet-legacy/.vs/*
 src/aspnet-legacy/bin/*
 src/aspnet-legacy/obj/*
 src/aspnet-legacy/Properties/PublishProfiles/FolderProfile.pubxml.user
+**/.terraform/*

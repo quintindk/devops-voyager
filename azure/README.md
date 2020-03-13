@@ -4,7 +4,7 @@ This is where the cloud happens...
 
 ## create cluster
 
-To spin up a cluster in Azure is extremely simple. You will need az cli though and you can instal it using the instructions [here](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+<s>To spin up a cluster in Azure is extremely simple. You will need az cli though and you can instal it using the instructions [here](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 
 There is one caveat for this to work. You need to enable the preview extensions to the Azure-CLI.
 
@@ -50,7 +50,7 @@ kubectl get nodes
 kubectl create clusterrolebinding kubernetes-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
 az aks browse --resource-group=rg-devopsdemo-prod-001 --name=aks-devopsdemo-prod-001
 ```
-
+</s>
 Windows node pools are still in preview and as such you'll need to enable the preview featuremon the subscription.
 
 ```shell

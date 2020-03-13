@@ -1,5 +1,5 @@
-$resourcegroup = Read-Host -Prompt 'Enter the name of the resource group: '
-$storagename = Read-Host -Prompt 'Enter the name of the storage account: '
+$resourcegroup = Read-Host -Prompt 'Enter the name of the resource group'
+$storagename = Read-Host -Prompt 'Enter the name of the storage account'
 
 Write-Host "Creating the following:"
 Write-Host " == Resource Group: $resourcegroup" -ForegroundColor DarkGreen -BackgroundColor White

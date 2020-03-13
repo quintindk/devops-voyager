@@ -6,14 +6,14 @@ variable "certificate_password" {}
 # This provider defaults to using the AZ CLI login. Check the configuration below for more information
 # on how to use a Service Principal.
 provider "azurerm" {
-  version = "=2.0.0"
+  version = "=1.44.0"
 }
 
 # Default to using a storage account to hold state. This will make it easier to work as a team.
 terraform {
   backend "azurerm" {
-    resource_group_name  = "rgdevopsvoyager"
-    storage_account_name = "tfstorage"
+    resource_group_name  = "rgterraformstate"
+    storage_account_name = "devopsvoyagertfstate"
     container_name       = "tfstate"
     key                  = "dev.terraform.tfstate"
   }
@@ -39,7 +39,7 @@ module "apim" {
   environment                 = local.environment
   base_name                   = local.base_name
   rg_name                     = module.rg.name
-  publisher_name              = "DevOps-Voyager"
+  publisher_name              = "Quintin de Kok"
   publisher_email             = "quintindk@tenagentsolutions.co.za"
   sku_name                    = "Developer"
   node_count                  = 1

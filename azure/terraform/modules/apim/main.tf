@@ -9,7 +9,7 @@ resource "azurerm_api_management" "apim" {
  
   certificate {
     encoded_certificate = var.base64_encoded_certificate
-    certificate_password = var.secure_password
+    certificate_password = var.certificate_password
     store_name = var.store_name
   }
   

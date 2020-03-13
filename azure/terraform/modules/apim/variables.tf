@@ -47,7 +47,7 @@ variable "base64_encoded_certificate" {
   default = null
 }
 
-variable "secure_password" {
+variable "certificate_password" {
   description = "Secure string password for certificate"
   default = null
 }
