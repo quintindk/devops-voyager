@@ -42,19 +42,16 @@ variable "node_count" {
   default = "1"
 }
 
-variable "base64_encoded_certificate" {
-  description = "Base64 encoded certificate"
-  default = null
-}
-
-variable "certificate_password" {
-  description = "Secure string password for certificate"
-  default = null
-}
-
-variable "store_name" {
-  description = "Certificate Store where this certificate should be stored. Possible values are CertificateAuthority and Root."
-  default = "CertificateAuthority"
+variable "ca_certificates" {
+  description = "The ca_certificates to load into the API managment instance."
+  
+  type        = list(object({
+    base64_encoded_certificate  = string
+    certificate_password        = string
+    store_name                  = string
+  }))
+  
+  default     = []
 }
 
 variable "instrumentation_key" {

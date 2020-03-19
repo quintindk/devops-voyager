@@ -1,7 +1,7 @@
 variable "service_principal_id" {}
 variable "service_principal_secret" {}
-variable "base64_encoded_certificate" {}
-variable "certificate_password" {}
+# variable "base64_encoded_certificate" {}
+# variable "certificate_password" {}
 
 # This provider defaults to using the AZ CLI login. Check the configuration below for more information
 # on how to use a Service Principal.
@@ -52,7 +52,12 @@ module "apim" {
   publisher_email             = "quintindk@tenagentsolutions.co.za"
   sku_name                    = "Developer"
   node_count                  = 1
-  base64_encoded_certificate  = var.base64_encoded_certificate
-  certificate_password        = var.certificate_password
+
+  # ca_certificates             = [{
+  #   base64_encoded_certificate  = var.base64_encoded_certificate
+  #   certificate_password        = var.certificate_password
+  #   store_name                  = "CertificateAuthority"
+  # }]
+  
   instrumentation_key         = module.appinsights.instrumentation_key
 }

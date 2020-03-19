@@ -7,10 +7,14 @@ resource "azurerm_api_management" "apim" {
 
   sku_name = "${var.sku_name}_${var.node_count}"
  
-  certificate {
-    encoded_certificate = var.base64_encoded_certificate
-    certificate_password = var.certificate_password
-    store_name = var.store_name
+  dynamic "certificate" {
+    for_each = var.ca_certificates
+
+    content {
+      encoded_certificate   = certificate.value.base64_encoded_certificate
+      certificate_password  = certificate.value.certificate_password
+      store_name            = certificate.value.store_name
+    }
   }
   
   policy {

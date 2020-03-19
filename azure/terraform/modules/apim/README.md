@@ -52,20 +52,25 @@ The following variables are available:
 - __description__: The amount of nodes to spin up.
 - __default__: "1"
 
-### base64_encoded_certificate
+### ca_certificates
 
-- __description__: Base64 encoded certificate
-_ __default__ : null
+- __decription__: The `certifcate` section described below. This is for the CA loading at the start of the API management instance creation. This is important so that you can add CAs later.
 
-### secure_password
+#### structure
 
-- __description__ : Secure string password for certificate
-- __default__ : null
+This variable makes use of the following structure. (Items marked with "*" are required)
 
-### store_name
+```yaml
+[{
+    base64_encoded_certificate  = string
+    certificate_password        = string
+    store_name                  = string
+}]
+```
 
-- __description__ : Certificate Store where this certificate should be stored. Possible values are CertificateAuthority and Root.
-- __default__ : CertificateAuthority
+- base64_encoded_certificate: Base64 encoded certificate.
+- certificate_password: Secure string password for certificate
+- store_name: Certificate Store where this certificate should be stored. Possible values are CertificateAuthority and Root.
 
 ### instrumentation_key
   
