@@ -50,8 +50,20 @@ kubectl get nodes
 kubectl create clusterrolebinding kubernetes-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
 az aks browse --resource-group=rg-devopsdemo-prod-001 --name=aks-devopsdemo-prod-001
 ```
+
 </s>
-Windows node pools are still in preview and as such you'll need to enable the preview featuremon the subscription.
+
+The steps above have been removed from the tutorial but remain for reference.
+
+### terraform
+
+The steps above have been removed from the tutorial but remain for reference.
+
+I've chosen to use [terraform](https://www.terraform.io/) to deploy the first portion of the AKS cluster. I'll add additional documentation here shortly. You'll need to apply the terraform script `./terraform/dev/main.tf` to create the cluster. This script includes an Application Insights instance for the API Management instance.
+
+### windows
+
+Windows node pools are still in preview and as such you'll need to enable the preview feature on the subscription.
 
 ```shell
 az feature register --name WindowsPreview --namespace Microsoft.ContainerService

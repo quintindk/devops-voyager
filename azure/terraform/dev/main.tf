@@ -33,6 +33,15 @@ module "rg" {
   base_name     = local.base_name
 }
 
+# AppInsights
+module "appinsights" {
+  source                      = "../modules/ai"
+  environment                 = local.environment
+  base_name                   = local.base_name
+  rg_name                     = module.rg.name
+  type                        = "web"
+}
+
 # API Management
 module "apim" {
   source                      = "../modules/apim"
@@ -45,4 +54,5 @@ module "apim" {
   node_count                  = 1
   base64_encoded_certificate  = var.base64_encoded_certificate
   certificate_password        = var.certificate_password
+  instrumentation_key         = module.appinsights.instrumentation_key
 }

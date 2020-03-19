@@ -16,3 +16,4 @@ src/aspnet-legacy/Properties/PublishProfiles/FolderProfile.pubxml.user
 **/certs/public/*
 *.csr
 azure/terraform/dev/tfplan.tf
+azure/terraform/dev/devplan.tf

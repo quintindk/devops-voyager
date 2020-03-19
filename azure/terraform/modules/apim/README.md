@@ -67,6 +67,11 @@ _ __default__ : null
 - __description__ : Certificate Store where this certificate should be stored. Possible values are CertificateAuthority and Root.
 - __default__ : CertificateAuthority
 
+### instrumentation_key
+  
+- __description__ : The instrumentation key from the application insights instance for logging."
+- __default__ : null
+
 ## Outputs
 
 The module provides the following output:

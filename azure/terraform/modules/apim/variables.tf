@@ -56,3 +56,8 @@ variable "store_name" {
   description = "Certificate Store where this certificate should be stored. Possible values are CertificateAuthority and Root."
   default = "CertificateAuthority"
 }
+
+variable "instrumentation_key" {
+  description = "The instrumentation key from the application insights instance for logging."
+  default = null
+}

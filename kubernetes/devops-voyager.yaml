@@ -27,9 +27,11 @@ spec:
             memory: "256Mi"
             cpu: 0.25
         ports:
-        - name: flask
+        - name: http
           containerPort: 5000
       restartPolicy: Always
+      nodeSelector:
+        kubernetes.io/os: linux
 ---
 kind: Service
 apiVersion: v1

@@ -142,27 +142,3 @@ You should see:
 ```text
 Server Works!
 ```
-
-## prometheus and grafana
-
-To install prometheus I'm going to use the [kube-prometheus](https://github.com/coreos/kube-prometheus) stack which includes the metric servers, prometheus and grafana. It's a bit of a cheat I guess but if the tools exist, why re-invent them :grinning:, that is the beauty of open source.
-
-```shell
-kubectl create -f manifests/
-sleep 10
-kubectl create -f manifests/
-until kubectl get customresourcedefinitions servicemonitors.monitoring.coreos.com ; do date; sleep 1; echo ""; done
-until kubectl get servicemonitors --all-namespaces ; do date; sleep 1; echo ""; done
-sleep 120
-kubectl apply -f manifests/
-sleep 10
-kubectl apply -f manifests/
-```
-
-To access the Grafana dashboard:
-
-```shell
-kubectl --namespace monitoring port-forward svc/grafana 3000
-```
-
-The open the browser with address http://127.0.0.1:3000

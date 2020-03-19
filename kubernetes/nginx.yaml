@@ -48,10 +48,10 @@ spec:
         resources:
           requests:
             memory: "128Mi"
-            cpu: 0.25
+            cpu: "250m"
           limits:
             memory: "256Mi"
-            cpu: 0.25
+            cpu: "500m"
       volumes:
       - name: nginx-conf
         configMap:
